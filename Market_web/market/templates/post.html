@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Post
+{% endblock title %}
+
+
+{% block content %}
+<div class="container w-50 p-3">
+    <form method="POST" class="form-register" style="color:white">
+        <!-- againt a cross site Request Forgery (CSRF) -->
+        {{ form.hidden_tag() }}
+        
+        <h1 class="h3 mb-3 font-weight-normal">
+            Add a New Product in the Market
+        </h1>
+        <br>
+        {{ form.product_name.label() }}
+        {{ form.product_name(class='form-control', placeholder='Product Name') }}
+        
+        {{ form.product_price.label() }}
+        {{ form.product_price(class='form-control', placeholder='Product Price') }}
+        
+        <div class="form-row">
+            <div class="form-group col-md-9">
+                {{ form.barcode.label() }}
+                {{ form.barcode(class='form-control', placeholder='Barcode') }}
+            </div>
+            <div class="form-group col-md-3">
+                <label for="generate">Generate Barcode</label>
+                <input class="btn btn-primary form-control" id="generate" name="generate" onclick="generate_barcode()" type="button" value="Generate Barcode">
+            </div>
+        </div>
+
+        
+        {{ form.description.label() }}
+        {{ form.description(class='form-control') }}
+        
+        <br>
+
+        {{ form.submit(class='btn btn-primary') }}
+    </form>
+</div>
+{% endblock content %}

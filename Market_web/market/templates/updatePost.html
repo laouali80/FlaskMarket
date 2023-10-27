@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Post
+{% endblock title %}
+
+
+{% block content %}
+<div class="container w-50 p-3">
+    <form method="POST" class="form-register" style="color:white">
+        <!-- againt a cross site Request Forgery (CSRF) -->
+        {{ form.hidden_tag() }}
+        
+        <h1 class="h3 mb-3 font-weight-normal">
+            Update Product in the Market
+        </h1>
+        <br>
+        {{ form.product_name.label() }}
+        {{ form.product_name(class='form-control', placeholder='Product Name', value=edit_post.name ) }}
+        
+        {{ form.product_price.label() }}
+        {{ form.product_price(class='form-control', placeholder='Product Price', value=edit_post.price) }}
+        
+        
+        {{ form.barcode.label() }}
+        {{ form.barcode(class='form-control', placeholder='Barcode', value=edit_post.barcode, disabled=true) }}
+
+        
+        {{ form.description.label() }}
+        {{ form.description(class='form-control') }}
+        
+        <br>
+
+        <input class="btn btn-secondary" id="submit" name="submit" type="submit" value="Update">
+    </form>
+</div>
+{% endblock content %}

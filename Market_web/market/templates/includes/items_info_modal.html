@@ -1,0 +1,54 @@
+<style>
+    .modal-content{
+        background-color: #212121;
+    }
+
+    #plus, #minus, #price{
+        display: inline;
+    }
+
+</style>
+
+
+<!-- Sell Modal -->
+<!-- passing the item.id to the modal id ( id="SellingModel-{{ user_own.id }}" ) -->
+<div class="modal fade" id="SellingModel-{{ user_own.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+                <!-- Modal title -->
+                {{ user_own.name }}
+            </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <form method="POST">
+                {{ selling_form.hidden_tag() }}
+
+                <h4 class="text-center">
+                    Are you sure you want to sell {{ user_own.name }} for {{ user_own.price }} $ ? 
+                </h4>
+                <br>
+                <h6 class="text-center">
+                    By clinking Sell, you will put back this item on Market.
+                </h6>
+                <br>
+                <!-- a hidden input to store the value of the item to purchase -->
+                <input id="sold_item" name="sold_item" type="hidden" value="{{ user_own.name }}">
+                <a class="btn btn-outline-secondary btn-block" href="{{ url_for('update_post', post_id=user_own.id) }}" role="button">Update Item</a>
+                <h6 class="text-center">OR</h6>
+                {{ selling_form.submit(class='btn btn-outline-danger btn-block') }}
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
